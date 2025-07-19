@@ -1,0 +1,8 @@
+{
+  "name": "app-fondos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "94987189"
+}
