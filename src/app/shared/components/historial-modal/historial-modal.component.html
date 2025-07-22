@@ -36,6 +36,7 @@
                 'text-red-500': transaccion.estado === 'D'
               }"
             >
+              {{ transaccion.estado === "D" ? "-" : "" }}
               {{ _utilsService.formatMoney(transaccion.monto) }}
             </p>
             <!-- <p class="text-xs text-gray-400">22 Jul 2025 - 10:15 AM</p> -->
