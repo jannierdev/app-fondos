@@ -22,12 +22,13 @@ Ejecutamos la app
 
 Creamos la carpeta android
 ```bash
-  cordova platform add android
+  ionic capacitor add android
 ```
 Luego, construimos la app
 ```bash
-  ionic serve
-  cordova build android
+  ionic build
+  npx cap sync
+  npx cap open android
 ```
 
 
