@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="pl-5">
+    <ion-title>Manejo de fondos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="p-3">
+    <div class="flex flex-col items-end">
+      <h4>
+        Saldo disponible: {{
+        _utilsService.formatMoney(getSaldoDisponibleActual()) }}
+      </h4>
+      <label class="underline" (click)="mostrarModalHistorial=true"
+        >Aquí puedes ver tu historial ></label
+      >
+    </div>
+    <h2 class="text-blue-500">Fondos disponibles</h2>
+
+    <div
+      class="flex flex-col h-[320px] overflow-y-auto space-y-4 p-2 scroll-custom"
+    >
+      <ng-container *ngIf="fondosDisponibles!.length > 0; else noFondos">
+        <app-wallet-card
+          *ngFor="let fondo of fondosDisponibles"
+          [fondo]="fondo"
+          (suscribir)="abrirModal($event)"
+          [disponible]="true"
+        ></app-wallet-card>
+      </ng-container>
+
+      <ng-template #noFondos>
+        <div
+          class="bg-white rounded-xl p-5 text-center shadow-lg text-gray-600"
+        >
+          <h3 class="text-lg font-semibold mb-2">
+            🎉 ¡Ya estás suscrito a todos los fondos!
+          </h3>
+          <p class="text-sm text-gray-500">
+            No tienes más fondos disponibles por ahora.
+          </p>
+        </div>
+      </ng-template>
+    </div>
+
+    <h2 class="text-green-500">Mis fondos</h2>
+
+    <div
+      class="flex flex-col h-[320px] overflow-y-auto space-y-4 p-2 scroll-custom"
+    >
+      <ng-container *ngIf="misFondos && misFondos.length > 0; else noSuscripciones">
+        <app-wallet-card
+          *ngFor="let fondo of misFondos"
+          [fondo]="fondo"
+          [disponible]="false"
+          (suscribir)="abrirModal($event)"
+        ></app-wallet-card>
+      </ng-container>
+
+      <ng-template #noSuscripciones>
+        <div
+          class="bg-white rounded-xl p-5 text-center shadow-lg text-gray-600"
+        >
+          <h3 class="text-lg font-semibold mb-2">🔒 Aún no estás suscrito</h3>
+          <p class="text-sm text-gray-500">
+            Suscríbete a un fondo para comenzar a invertir.
+          </p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ion-content>
+
+<!-- Modal de suscripción -->
+<app-suscripcion-modal
+  *ngIf="fondoSeleccionado"
+  [fondo]="fondoSeleccionado"
+  [show]="mostrarModal"
+  [saldo]="getSaldoDisponibleActual()"
+  (close)="cerrarModal()"
+  (suscripcion)="agregarSuscripcion()"
+></app-suscripcion-modal>
+
+<!-- Modal de historial -->
+<app-historial-modal
+  [show]="mostrarModalHistorial"
+  (close)="cerrarModalHistorial()"
+></app-historial-modal>

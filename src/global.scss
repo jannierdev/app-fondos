@@ -34,4 +34,37 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
+
+body,
+* {
+  font-family: "Fredoka", sans-serif;
+}
+
+body {
+  background: #f5f5f5 !important;
+}
+
+/* Scroll minimalista, oculto por defecto */
+.scroll-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 transparent; /* thumb - track */
+}
+
+.scroll-custom::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.scroll-custom:hover::-webkit-scrollbar-thumb {
+  background-color: #6b7280; /* Gray-500 */
+}
